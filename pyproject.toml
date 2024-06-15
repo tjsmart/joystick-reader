@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "joystick_reader"
+version = "0.1.0"
+description = "A simple CLI for reading and plotting joystick motion in real time."
+authors = [
+    { name = "Tyler Smart", email = "tjsmart@ucsc.edu" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = [
+    "matplotlib~=3.9",
+    "pygame~=2.5",
+    "pyside6~=6.7"
+]
+
+[tool.setuptools]
+py-modules = ["joystick_reader"]
+
+[project.scripts]
+joystick-reader = "joystick_reader:main"
