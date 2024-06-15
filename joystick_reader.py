@@ -144,7 +144,7 @@ class ButtonBar(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Joystick Motion Plotter")
+        self.setWindowTitle("Joystick Reader")
 
         self.main_widget = QWidget(self)
         self.setCentralWidget(self.main_widget)
