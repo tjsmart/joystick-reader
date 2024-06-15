@@ -1,15 +1,15 @@
 import csv
+import os
 import sys
+
 from collections import deque
 from datetime import datetime
 from pathlib import Path
 
-import pygame
 from matplotlib.animation import FuncAnimation
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg
 from matplotlib.figure import Figure
 from matplotlib.lines import Line2D
-from pygame.joystick import JoystickType
 from PySide6.QtCore import Qt
 from PySide6.QtCore import QTimerEvent
 from PySide6.QtGui import QKeyEvent
@@ -19,6 +19,11 @@ from PySide6.QtWidgets import QMainWindow
 from PySide6.QtWidgets import QPushButton
 from PySide6.QtWidgets import QVBoxLayout
 from PySide6.QtWidgets import QWidget
+
+
+# suppress pygame's welcome message
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "hide"
+import pygame
 
 
 UPDATE_INTERVAL_MS = 50
@@ -67,14 +72,14 @@ class JoystickPlotter:
 
 
 class JoystickReader:
-    joystick: JoystickType
+    joystick: pygame.joystick.JoystickType
     all_data: list[tuple[deque[float], deque[float]]]
 
     def __init__(self) -> None:
         pygame.init()
         pygame.joystick.init()
 
-        self.joystick = pygame.joystick.Joystick(1)
+        self.joystick = pygame.joystick.Joystick(0)
         self.joystick.init()
 
         self.all_data = []
